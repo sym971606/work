@@ -1,0 +1,70 @@
+	<head id="Head1">
+<title>用 jQuery 控制網頁捲軸移動</title>
+<style type="text/css">
+/*pre { height: 50px; }*/
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+var count = 1;
+function loadMore()
+{
+$("body").append('<pre>這是捲軸移動到頁尾後自動新增的內容' + count++ + '</pre><a href="#" class="gotoheader">Go To Header</a>');
+$(window).bind('scroll', bindScroll);
+}
+function bindScroll(){
+var str = "$(window).scrollTop()=" + $(window).scrollTop() + "\n";
+str += "$(window).height()=" + $(window).height() + "\n";
+str += "$(document).height()=" + $(document).height();
+//alert(str);
+if(count <= 100 && ($(window).scrollTop() + $(window).height() > $(document).height() - 100)) {
+$(window).unbind('scroll');
+loadMore();
+}
+}
+$(function(){
+// 幫 a.gotoheader 加上 click 事件
+$('a.gotoheader').click(function(){
+// 讓捲軸移動到頁首的位置
+var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+$body.animate({scrollTop: 0}, 1000);
+return false;
+});
+$(window).scroll(bindScroll);
+//$("html, body").animate({scrollTop: $(document).height()}, 1000); //讓捲軸移動到頁尾的位置
+});
+</script>
+</head>
+<body>
+這是頁首
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+<pre>原始內容</pre>
+<a href="#" class="gotoheader">Go To Header</a>
+</body>
+</html>
